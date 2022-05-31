@@ -18,10 +18,7 @@ use App\Http\Controllers\PreferencesController;
 
 
 Route::get('/', function () {
-    // if (Auth::check()){   //if user is logged in, redirect to home
-    //     return redirect('/home');
-    // }
-    return view('login', ['message'=>""]);
+    return view('welcome');
 }); 
 
 //login/ register routes
