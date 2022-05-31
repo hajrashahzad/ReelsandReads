@@ -490,7 +490,7 @@ body {
     background: #FFFFFF;
     box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-    padding-left: 10px;
+    padding-left: 17px;
     width: 70vw;
     height: 40px;
     transition: transform 350ms ease;
@@ -509,6 +509,7 @@ body {
 
 #searchbar:focus {
     background-color: rgba(219, 219, 219, 0.815);
+    border: none;
 }
 
 .mobile-nav-toggle {
