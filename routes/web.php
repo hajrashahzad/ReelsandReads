@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PreferencesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,5 @@ Route::get('/home',  [HomeController::class, 'listdisplay']);
 Route::get('/recommendations', function(){
     return view('recommendations');
 });
-// Route::get('/test', [HomeController::class, 'index']);
+Route::get('/preferences', 'App\Http\Controllers\PreferencesController@getGenres');
+Route::post('/preferences', 'App\Http\Controllers\PreferencesController@savePreferences');

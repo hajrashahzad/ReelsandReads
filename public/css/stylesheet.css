@@ -1,7 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 *{
     font-family: 'Poppins';
     margin: 0;
 }
+
+/* preferences page code starts */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("./public/The Blue Lagoon.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh;
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 90%;
+    padding: 20px;
+}
+
+.header-layer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.page-heading {
+    font-family: 'Poppins';
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 700;
+    color: white;
+}
+
+.back-button {
+    padding: 5px;
+    padding-right: 10px;
+    margin-right: 20px;
+    border-right: 3px solid white;
+}
+
+.back-button:hover {
+    cursor: pointer;
+}
+
+.brand-logo-container {
+    margin-right: 30px;
+}
+
+.brand-logo {
+    height: 70px;
+    width: 70px;
+    border: none;
+    border-radius: 50%;
+}
+
+.brand-logo:hover {
+    cursor: pointer;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: row;;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 150px;
+    margin-bottom: 25px;
+    /* border: 1px solid black; */
+}
+
+.option-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+    width: 20%;
+    border: none;
+    border-radius: 25px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.4);
+    padding-bottom: 60px;
+}
+
+.option-container:hover {
+    background: #326280;
+    cursor: pointer;
+}
+
+.option-selected {
+    display: none;
+    width: fit-content;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-selected-wrapper {
+    margin-bottom: 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.option-icon {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.option-name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 30px;
+    font-weight: 600;
+    color: #326280;
+    width: 100%;
+    text-align: center;
+}
+
+.nav-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+}
+
+.nav-button {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    background-color: #e44b4e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.nav-button:hover {
+    cursor: pointer;
+}
+
+.main-carousel {
+    width: 95%;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.genres-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.genre-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: fit-content;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 15px;
+}
+
+.genre-dropdown-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: none;
+    border-bottom: 5px solid #326280;
+}
+
+
+.genre-dropdown, .genre-dropdown-item {
+    padding: 10px;
+    border: none;
+    background: none;
+    color: #326280;
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 600;
+    width: 90%;
+    margin-right: 10px;
+}
+
+.genre-add-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 10%;
+    padding: 10px;
+}
+
+.genre-add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+    width: 50px;
+    height: 50px;
+}
+
+.selected-genres-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: none;
+    background: none;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.no-genre-selected {
+    width: 100%;
+    text-align: center;
+    font-family: 'Inter';
+    font-size: 25px;
+    font-weight: 600;
+    font-style: normal;
+    color: #326280;
+}
+
+.selected-genre {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #326280;
+}
+
+.genre-name {
+    font-family: 'Inter';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    color: #326280;
+    width: 80%;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.genre-delete-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.genre-delete {
+    background: none;
+    border: none;
+}
+
+
+
+
 /* login/register code starts*/
 .login, .register {
     width: 400px;
