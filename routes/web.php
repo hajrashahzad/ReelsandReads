@@ -24,9 +24,6 @@ Route::get('/recommendations', [RecommendationsController::class, 'displayrecs']
 Route::get('/info', [HomeController::class, 'infodisplay']);
 Route::post('info',[HomeController::class, 'addtolist']);
 Route::post('search', [SearchController::class, 'searchmedia']);
-Route::get('/recommendations', function(){
-    return view('recommendations');
-});
 Route::get('/preferences', 'App\Http\Controllers\PreferencesController@getGenres');
 Route::post('/preferences', 'App\Http\Controllers\PreferencesController@savePreferences');
 Route::get('/info', [HomeController::class, 'infodisplay']);
