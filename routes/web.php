@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\RecommendationsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home',  [HomeController::class, 'listdisplay']);
-Route::get('/recommendations', function(){
-    return view('recommendations');
-});
+Route::get('/recommendations', [RecommendationsController::class, 'displayrecs']);
 Route::get('/info', [HomeController::class, 'infodisplay']);
 Route::post('info',[HomeController::class, 'addtolist']);
 Route::post('search', [SearchController::class, 'searchmedia']);

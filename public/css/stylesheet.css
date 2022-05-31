@@ -308,6 +308,11 @@ button:hover{
 .submit-button{
     margin-top: 15px;
 }
+#success-message{
+    margin-left: 3%;
+    color: #212e53;
+    margin-top: 2%;
+}
 #ratings-form{
     color: #212e53;
 }
@@ -324,8 +329,9 @@ button:hover{
     text-align: center;
     margin-left: 3%;
 }
-.ratings-radio{
-    display: flex; flex-direction:column;
+#ratings-radio{
+    display: flex;  
+    flex-direction:column; 
     padding-right: 2em;
 }
 .ratings-radio input{

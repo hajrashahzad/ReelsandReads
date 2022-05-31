@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7f473dda5c.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
     <script src="{{url('js/jquery-1.11.0.js')}}"></script>
     <script src="{{url('js/main.js')}}"></script>
     <script>
@@ -24,7 +26,11 @@
                        $('#success-message').html('Added Successfully');
                        $('#success-message').show();
                     },
-                    error: function(error) {console.log(error)}
+                    error: function(error) {
+                        console.log(error),
+                        $('#success-message').html('Item already in list!');
+                        $('#success-message').show();
+                    }
                })
            });
            $('#remove-button').click(function(){
@@ -40,7 +46,11 @@
                        $('#success-message').html('Removed Successfully');
                        $('#success-message').show();
                     },
-                    error: function(error) {console.log(error)}
+                    error: function(error) {
+                        console.log(error),
+                        $('#success-message').html('Item not in list!');
+                       $('#success-message').show();
+                    }
                })
            });
         })
@@ -98,70 +108,70 @@
                 @if($item_type == 'movie')
                 <table>
                     <tr>
-                      <td>Ratings: {{$ratings}}</td>
+                      <td><b>Ratings: </b> {{$ratings}}</td>
                     </tr>
                     <tr>
-                        <td>Year of Release:  {{$yearOfRelease}}</td>
+                        <td><b>Year of Release: </b> {{$yearOfRelease}}</td>
                     </tr>
                     <tr>
-                       <td>Cast: {{$cast}}</td>
+                       <td><b>Cast:</b> {{$cast}}</td>
                     </tr>
                     <tr>
-                        <td>Director: {{$director}}</td>
+                        <td><b>Director:</b> {{$director}}</td>
                     </tr>
                     <tr>
-                        <td>Genres: {{$genres}}</td>
+                        <td><b>Genres:</b> {{$genres}}</td>
                     </tr>
                     <tr>
-                        <td>Sypnosis: {{$sypnosis}}</td>
+                        <td><b>Sypnosis:</b> {{$sypnosis}}</td>
                     </tr>
                     <tr>
-                        <td>Runtime: {{$runtime}}</td>
+                        <td><b>Runtime:</b> {{$runtime}}</td>
                     </tr>
                   </table>
                   @elseif($item_type == 'book')
                   <table>
                     <tr>
-                      <td>Ratings: {{$ratings}}</td>
+                      <td><b> Ratings:</b> {{$ratings}}</td>
                     </tr>
                     <tr>
-                        <td>Year of Release:  {{$yearOfRelease}}</td>
+                        <td><b>Year of Release: </b> {{$yearOfRelease}}</td>
                     </tr>
                     <tr>
-                       <td>Authors: {{$authors}}</td>
+                       <td><b>Authors:</b> {{$authors}}</td>
                     </tr>
                     <tr>
-                        <td>Tags: {{$tags}}</td>
+                        <td><b>Tags:</b> {{$tags}}</td>
                     </tr>
                     <tr>
-                        <td>ISBN: {{$isbn}}</td>
+                        <td><b>ISBN:</b> {{$isbn}}</td>
                     </tr>
                     <tr>
-                        <td>Number of Pages: {{$pgs}}</td>
+                        <td><b>Number of Pages:</b> {{$pgs}}</td>
                     </tr>
                   </table>
                   @elseif($item_type == 'anime')
                   <table>
                     <tr>
-                      <td>Ratings: {{$ratings}}</td>
+                      <td><b>Ratings: </b>{{$ratings}}</td>
                     </tr>
                     <tr>
-                        <td>Year of Release:  {{$yearOfRelease}}</td>
+                        <td><b>Year of Release: </b> {{$yearOfRelease}}</td>
                     </tr>
                     <tr>
-                       <td>Genres: {{$genres}}</td>
+                       <td><b>Genres:</b> {{$genres}}</td>
                     </tr>
                     <tr>
-                        <td>Rank: {{$rank}}</td>
+                        <td><b>Rank:</b> {{$rank}}</td>
                     </tr>
                     <tr>
-                        <td>Japanese Title: {{$og_title}}</td>
+                        <td><b>Japanese Title:</b> {{$og_title}}</td>
                     </tr>
                     <tr>
-                        <td>Overview: {{$overview}}</td>
+                        <td><b>Overview:</b> {{$overview}}</td>
                     </tr>
                     <tr>
-                        <td>Number Of Episodes: {{$eps}}</td>
+                        <td><b>Number Of Episodes:</b> {{$eps}}</td>
                     </tr>
                   </table>
                   @endif
@@ -175,7 +185,8 @@
             <br><br>
             <form id="ratings-form" action="">
                 <h3 id="rate-heading">Rate the movie!</h2>
-                    <div class="ratings-box">
+
+                    <!-- <div class="ratings-box">
                         <div class='ratings-radio'>
                             <input type="radio" id="radio1">
                             <label for="radio1">1</label>
@@ -216,7 +227,49 @@
                             <input type="radio" id="radio10">
                             <label for="radio10">10</label>
                         </div>
+                    </div> -->
+                <div class="ratings-box">
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio1" value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                     </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio2" value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
                     </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio3" value="3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio4" value="4">
+                        <label class="form-check-label" for="inlineRadio4">4</label>
+                    </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio5" value="5">
+                        <label class="form-check-label" for="inlineRadio5">5</label>
+                    </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio6" value="6">
+                        <label class="form-check-label" for="inlineRadio6">6</label>
+                    </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio7" value="7">
+                        <label class="form-check-label" for="inlineRadio7">7</label>
+                    </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio8" value="8">
+                        <label class="form-check-label" for="inlineRadio8">8</label>
+                    </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio9" value="9">
+                        <label class="form-check-label" for="inlineRadio9">9</label>
+                    </div>
+                    <div class="form-check form-check-inline" id = 'ratings-radio'>
+                        <input class="form-check-input" type="radio" name="Options" id="inlineRadio10" value="10">
+                        <label class="form-check-label" for="inlineRadio10">10</label>
+                    </div>
+                </div>
                     <br>
                     <h3>Your thoughts?</h3>
                     <br>
