@@ -79,7 +79,7 @@
         <br><br><br><br><br><br><br>
         <div class='main-widget'>
             <div class = 'welcome'>
-                <h1>Welcome Username</h1>
+                <h1>Welcome {{$username}}</h1>
                 <h3>We are keeping record of your favourite media!</h3>
             </div>
             <div id = 'movielist'>

@@ -17,12 +17,14 @@ class PreferencesController extends Controller
         $books = $req->input('books');
         $movies = $req->input('movies');
         $anime = $req->input('anime');
+        $username = session('username');
         foreach($genreIDs as $ID) {
-            DB::insert('INSERT INTO user_genres VALUES (?, ?)', ['test1', $ID]);
+            DB::insert('INSERT INTO user_genres VALUES (?, ?)', [$username, $ID]);
         }
-        DB::update('UPDATE users SET books = ? WHERE username = ?', [$books, 'test1']);
-        DB::update('UPDATE users SET movie = ? WHERE username = ?', [$movies, 'test1']);
-        DB::update('UPDATE users SET anime = ? WHERE username = ?', [$anime, 'test1']);
-        return response()->json(['success'=>"AJAX Call done successfully", 'redirectURL'=>'/recommendations']);
+        DB::update('UPDATE users SET books = ? WHERE username = ?', [$books, $username]);
+        DB::update('UPDATE users SET movie = ? WHERE username = ?', [$movies, $username]);
+        DB::update('UPDATE users SET anime = ? WHERE username = ?', [$anime, $username]);
+        session()->flush();
+        return response()->json(['success'=>"AJAX Call done successfully", 'redirectURL'=>'/login']);
     }
 }

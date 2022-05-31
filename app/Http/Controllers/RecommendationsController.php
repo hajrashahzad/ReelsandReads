@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\RecommendationsController;
+// use App\Http\Controllers\RecommendationsController;
 use Illuminate\Support\Facades\DB;
 
 class RecommendationsController extends Controller
 {
     //
     public function displayrecs(){
-        $username = 'test1';
+        $username = session('username');
         $mediatypes = DB::table('users')->select('movie', 'books', 'anime')->where('username','=',$username)->get();
         foreach ($mediatypes as $i){
             $moviebool = $i->movie;
