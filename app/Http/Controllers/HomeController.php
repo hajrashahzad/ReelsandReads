@@ -43,7 +43,7 @@ class HomeController extends Controller
               $runtime = $i->runtime;
               $director = $i->director;
           }
-          return view('info', ['title' => $title,'item_type' => $type, 'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'genres' => $genrelist, 'cast' => $cast, 'sypnosis' =>$sypnosis, 'director' =>$director, 'runtime'=>$runtime]);
+          return view('info', ['title' => $title,'item_type' => $type, 'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'genres' => $genrelist, 'cast' => $cast, 'sypnosis' =>$sypnosis, 'director' =>$director, 'runtime'=>$runtime,'itemID' =>$itemID]);
         }
         else if($type == 'book'){
             $authorlist = DB::select('SELECT author_name from authors where author_id in (select author_id from book_authors where book_id = ?)', [$itemID]);
@@ -61,7 +61,7 @@ class HomeController extends Controller
                 $isbn = $k->isbn;
                 $pgs = $k->noOfPgs;
             }
-            return view('info', ['title' => $title, 'item_type' => $type,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'authors' => $authors, 'tags'=>$tags, 'isbn'=>$isbn, 'pgs'=>$pgs]);
+            return view('info', ['title' => $title, 'item_type' => $type,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'authors' => $authors, 'tags'=>$tags, 'isbn'=>$isbn, 'pgs'=>$pgs, 'itemID' =>$itemID]);
         }
         else if($type == 'anime'){
             $genres = DB::select('SELECT genre from genres where item_type = ? and genre_id in (select genre_id from item_genres where item_id = ?)', [$type, $itemID]);
@@ -76,10 +76,46 @@ class HomeController extends Controller
                 $overview = $a->overview;
                 $eps = $a->noOfEpisodes;
             }
-            return view('info', ['title' => $title, 'item_type' => $type,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'genres' => $genrelist, 'rank'=>$rank, 'og_title'=>$og_title, 'overview'=>$overview, 'eps' =>$eps]);
+            return view('info', ['title' => $title, 'item_type' => $type,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'genres' => $genrelist, 'rank'=>$rank, 'og_title'=>$og_title, 'overview'=>$overview, 'eps' =>$eps, 'itemID' =>$itemID]);
         }
         else{
             return view('info', ['title' => $title,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear]);
+        }
+        
+    }
+    public function addtolist(Request $req){
+        $itemID = $req->input('itemID');
+        $addClicked = $req->input('addClick');
+        $username = 'test1';
+        $type = DB::table('items')->where('item_id', '=', $itemID)->value('item_type');
+       
+        if($addClicked == 'true'){
+           // if($c == 0){
+                if($type == 'movie'){
+                    DB::insert('INSERT into movielist values (?, ?)', [$username, $itemID]);
+                }
+                else if ($type == 'book'){
+                    DB::insert('INSERT into booklist values (?, ?)', [$username, $itemID]);
+                }
+                else if ($type == 'anime'){
+                    DB::insert('INSERT into animelist values (?, ?)', [$username, $itemID]);
+                }
+                return response()->json(['success'=>'Ajax request submitted successfully']);  
+         //   }
+        }
+        else if ($addClicked == 'false'){
+           // if ($c == 1){
+                if($type == 'movie'){
+                    DB::delete('DELETE from movielist where username = ? and movie_id = ?', [$username, $itemID]);
+                }
+                else if ($type == 'book'){
+                    DB::delete('DELETE from booklist where username = ? and book_id = ?', [$username, $itemID]);
+                }
+                else if ($type == 'anime'){
+                    DB::delete('DELETE from animelist where username = ? and anime_id = ?', [$username, $itemID]);
+                }
+           // }
+           return response()->json(['success'=>'Ajax request submitted successfully']);
         }
     }
 }

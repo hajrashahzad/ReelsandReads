@@ -3,6 +3,7 @@
 <head>
     <title>Reels and Reads</title>
     <meta name = 'viewport' content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href= "{{url('css/stylesheet.css')}}" type='text/css'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,24 +11,7 @@
     <script src="https://kit.fontawesome.com/7f473dda5c.js" crossorigin="anonymous"></script>
     <script src="{{url('js/jquery-1.11.0.js')}}"></script>
     <script src="{{url('js/main.js')}}"></script>
-    <script>
-        var scrollAmount = 0;
-        function sliderScrollLeft(idname){
-            var sliders = document.querySelector(idname);
-            sliders.scrollTo({top:0,left: (scrollAmount = scrollAmount - 180),behavior: "smooth"});
-            if(scrollAmount < 0){
-                scrollAmount = 0;
-            }
-            return;
-        }
-        function sliderScrollRight(idname){
-            var sliders = document.querySelector(idname);
-            if(scrollAmount <= sliders.scrollWidth - sliders.clientWidth){
-                sliders.scrollTo({top:0,left: (scrollAmount = scrollAmount + 180),behavior: "smooth"});
-            }
-            return;
-        }
-    </script>
+    
     <style>
         .fa-bars, .fa-xmark{
             color: white;
@@ -82,7 +66,6 @@
                         <tr><td>Title: {{$i->title}}</td></tr>
                         <tr><td>Ratings: {{$i->online_ratings}}</td></tr>
                         <tr><td>Year of Release: {{$i->yearOfRelease}}</td></tr>
-                        <tr><td><button class="add-to-list-button" style="margin:0;">Add to List</button></td></tr>
                     </table>
                 </div>
             </div>

@@ -22,4 +22,5 @@ Route::get('/recommendations', function(){
     return view('recommendations');
 });
 Route::get('/info', [HomeController::class, 'infodisplay']);
+Route::post('info',[HomeController::class, 'addtolist']);
 Route::post('search', [SearchController::class, 'searchmedia']);

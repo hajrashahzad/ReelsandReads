@@ -10,7 +10,7 @@ class SearchController extends Controller
     public function searchmedia(Request $req){
         $value = $req->searchbar;
         $value = '%'.$value.'%';
-        $list = DB::select('SELECT title, online_ratings, yearOfRelease, photoURL from items where title like ? limit 50', [$value]);
+        $list = DB::select('SELECT title, online_ratings, yearOfRelease, photoURL, item_id from items where title like ? limit 50', [$value]);
         return view('search', ['list'=>$list]);
     }
 }

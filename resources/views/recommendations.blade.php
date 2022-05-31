@@ -46,7 +46,11 @@
                 <i class="fa-solid fa-bars fa-2x"></i>
             </div>
         </button>
-        <input type="text" placeholder="Search..." id="searchbar" bar-visible = 'false'>
+        <form action="search" method ='POST'>
+            @csrf
+            <input type="text" placeholder="Search..." name= 'searchbar' id="searchbar" bar-visible = 'false'>
+            <input type="submit" style='display:none;'>
+        </form>
         <nav>
             <ul id = "primary-navigation" data-visible="false" class="primary-navigation flex">
                 <li><a href="home">
