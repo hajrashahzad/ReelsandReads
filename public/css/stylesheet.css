@@ -286,6 +286,7 @@ button:hover{
     height: 400px;
     width: 260px;
 }
+
 #info-widget table{
     flex-direction: column;
     color: #212e53;

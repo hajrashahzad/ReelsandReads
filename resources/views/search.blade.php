@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <title>Reels and Reads</title>
     <meta name = 'viewport' content="width=device-width, initial-scale=1.0">
@@ -34,7 +34,7 @@
         }
     </style>
 </head>
-<body onresize="resizeAction()">
+<body>
     <header class="primary-header flex">
         <div>
            <a href="home"><img src="{{url('images/logo_pink.png')}}" alt="logo" class="logo"></a>
@@ -69,43 +69,25 @@
             </ul>
         </nav>
     </header>
-    <main class = 'main-body'>
-        <br><br><br><br><br><br><br>
-        <div class='main-widget'>
-            <div class = 'welcome'>
-                <h1>Welcome Username</h1>
-                <h3>We are keeping record of your favourite media!</h3>
-            </div>
-            <div id = 'movielist'>
-                <h2>Movie List</h2>
-                <div class = 'slider' id="movie-slider">
-                    <button class="slider-button-left" onclick="sliderScrollLeft('#movie-slider')"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="slider-button-right" onclick="sliderScrollRight('#movie-slider')"><i class="fa-solid fa-angle-right"></i></button>
-                    @foreach ($movielist as $movie)
-                    <a href="info?id={{$movie->title}}"><img src="{{$movie->photoURL}}" alt=""></a>
-                    @endforeach
+    <main class="search-main">
+        <br><br><br><br><br><br>
+        <div class="main-widget">
+            @foreach ($list as $i)
+            <div id="info-widget" class='searchinfo'>
+                <div>
+                    <a href="info?id={{$i->title}}"><img src="{{$i->photoURL}}" alt="" style = 'height:200px;width:160px;'></a>
+                </div>
+                <div>
+                    <table>
+                        <tr><td>Title: {{$i->title}}</td></tr>
+                        <tr><td>Ratings: {{$i->online_ratings}}</td></tr>
+                        <tr><td>Year of Release: {{$i->yearOfRelease}}</td></tr>
+                        <tr><td><button class="add-to-list-button" style="margin:0;">Add to List</button></td></tr>
+                    </table>
                 </div>
             </div>
-            <div id = 'booklist'>
-                <h2>Book List</h2>
-                <div class = 'slider' id="book-slider">
-                    <button class="slider-button-left"  onclick="sliderScrollLeft('#book-slider')"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="slider-button-right"  onclick="sliderScrollRight('#book-slider')"><i class="fa-solid fa-angle-right"></i></button>
-                    @foreach ($booklist as $book)
-                    <a href="info?id={{$book->title}}"><img src="{{$book->photoURL}}" alt=""></a>
-                    @endforeach
-                </div>
-            </div>
-            <div id = 'animelist'>
-                <h2>Anime List</h2>
-                <div class = 'slider' id="anime-slider">
-                    <button class="slider-button-left" onclick="sliderScrollLeft('#anime-slider')" style="top:950px"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="slider-button-right" onclick="sliderScrollRight('#anime-slider')" style="top:950px"><i class="fa-solid fa-angle-right"></i></button>
-                    @foreach ($animelist as $anime)
-                    <a href="info?id={{$anime->title}}"><img src="{{$anime->photoURL}}" alt=""></a>
-                    @endforeach
-                </div>
-            </div>
+            @endforeach
         </div>
     </main>
 </body>
+</html>
