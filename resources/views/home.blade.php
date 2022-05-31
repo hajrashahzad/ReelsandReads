@@ -84,8 +84,8 @@
                 <div class = 'slider' id="movie-slider">
                     <button class="slider-button-left" onclick="sliderScrollLeft('#movie-slider')"><i class="fa-solid fa-angle-left"></i></button>
                     <button class="slider-button-right" onclick="sliderScrollRight('#movie-slider')"><i class="fa-solid fa-angle-right"></i></button>
-                    @foreach ($res as $item)
-                    <a href="info?id={{$item->title}}"><img src="{{$item->photoURL}}" alt=""></a>
+                    @foreach ($movielist as $movie)
+                    <a href="info?id={{$movie->title}}"><img src="{{$movie->photoURL}}" alt=""></a>
                     @endforeach
                 </div>
             </div>
@@ -94,14 +94,9 @@
                 <div class = 'slider' id="book-slider">
                     <button class="slider-button-left"  onclick="sliderScrollLeft('#book-slider')"><i class="fa-solid fa-angle-left"></i></button>
                     <button class="slider-button-right"  onclick="sliderScrollRight('#book-slider')"><i class="fa-solid fa-angle-right"></i></button>
-                    
-                                            <!-- <?php
-                        // while($list = mysqli_fetch_array($booklist)){
-                        //     echo '<div>';
-                        //     echo '<img src = "'.$list['photoURL'].'" alt = "img">';
-                        //     echo '</div>';
-                        // }
-                    ?> -->
+                    @foreach ($booklist as $book)
+                    <a href="info?id={{$book->title}}"><img src="{{$book->photoURL}}" alt=""></a>
+                    @endforeach
                 </div>
             </div>
             <div id = 'animelist'>
@@ -109,13 +104,9 @@
                 <div class = 'slider' id="anime-slider">
                     <button class="slider-button-left" onclick="sliderScrollLeft('#anime-slider')" style="top:950px"><i class="fa-solid fa-angle-left"></i></button>
                     <button class="slider-button-right" onclick="sliderScrollRight('#anime-slider')" style="top:950px"><i class="fa-solid fa-angle-right"></i></button>
-                    <!-- <?php
-                        // while($list = mysqli_fetch_array($animelist)){
-                        //     echo '<div>';
-                        //     echo '<img src = "'.$list['photoURL'].'" alt = "img">';
-                        //     echo '</div>';
-                        // }
-                    ?>  -->
+                    @foreach ($animelist as $anime)
+                    <a href="info?id={{$anime->title}}"><img src="{{$anime->photoURL}}" alt=""></a>
+                    @endforeach
                 </div>
             </div>
         </div>

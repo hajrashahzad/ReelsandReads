@@ -21,4 +21,4 @@ Route::get('/home',  [HomeController::class, 'listdisplay']);
 Route::get('/recommendations', function(){
     return view('recommendations');
 });
-// Route::get('/test', [HomeController::class, 'index']);
+Route::get('/info', [HomeController::class, 'infodisplay']);
