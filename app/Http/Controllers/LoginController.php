@@ -22,6 +22,7 @@ class LoginController extends Controller
                 session(['animebool'=>$users[0]->anime]); 
                 session(['moviebool'=>$users[0]->movie]); 
                 session(['booksbool'=>$users[0]->books]);
+                session(['inRegistration'=>false]);
                 // dd($users); 
                 // $data=session('animebool');  
                 // echo $data; 
@@ -36,7 +37,7 @@ class LoginController extends Controller
     }
     public function logout(Request $req){
         $req->session()->flush();  
-        return redirect('/login');
+        return redirect('/');
   
     }
 }

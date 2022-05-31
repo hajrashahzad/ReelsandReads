@@ -87,7 +87,7 @@ class HomeController extends Controller
     public function addtolist(Request $req){
         $itemID = $req->input('itemID');
         $addClicked = $req->input('addClick');
-        $username = 'test1';
+        $username = session('username');
         $type = DB::table('items')->where('item_id', '=', $itemID)->value('item_type');
        
         if($addClicked == 'true'){
@@ -124,7 +124,8 @@ class HomeController extends Controller
         $review = $req->input('review');
         $star = $req->input('star');
         $itemId = $req->input('itemId');
-        DB::insert('INSERT INTO reviews VALUES (?, ?, ?, ?)', ['test1', $itemId, $review, $star]);
+        $username = session('username');
+        DB::insert('INSERT INTO reviews VALUES (?, ?, ?, ?)', [$username, $itemId, $review, $star]);
         return response()->json(['success'=>'Ajax request submitted successfully']);
     }
 }

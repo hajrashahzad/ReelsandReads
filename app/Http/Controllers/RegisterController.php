@@ -18,6 +18,7 @@ class RegisterController extends Controller
             DB::insert('insert into users (username,passwd,email) values(?,?,?)' ,
             [$username, $password, $email]);
             session(['username'=>$username]);
+            session(['inRegistration'=>true]);
 			// Redirect to preference page
 			return redirect('/preferences');
         }

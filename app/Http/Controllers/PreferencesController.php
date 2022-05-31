@@ -18,13 +18,28 @@ class PreferencesController extends Controller
         $movies = $req->input('movies');
         $anime = $req->input('anime');
         $username = session('username');
-        foreach($genreIDs as $ID) {
-            DB::insert('INSERT INTO user_genres VALUES (?, ?)', [$username, $ID]);
+        $inRegistration = session('inRegistration');
+        if ($inRegistration)
+        {
+            foreach($genreIDs as $ID) {
+                DB::insert('INSERT INTO user_genres VALUES (?, ?)', [$username, $ID]);
+            }
+            DB::update('UPDATE users SET books = ? WHERE username = ?', [$books, $username]);
+            DB::update('UPDATE users SET movie = ? WHERE username = ?', [$movies, $username]);
+            DB::update('UPDATE users SET anime = ? WHERE username = ?', [$anime, $username]);
+            session()->flush();
+            return response()->json(['success'=>"AJAX Call done successfully", 'redirectURL'=>'/login']);
         }
-        DB::update('UPDATE users SET books = ? WHERE username = ?', [$books, $username]);
-        DB::update('UPDATE users SET movie = ? WHERE username = ?', [$movies, $username]);
-        DB::update('UPDATE users SET anime = ? WHERE username = ?', [$anime, $username]);
-        session()->flush();
-        return response()->json(['success'=>"AJAX Call done successfully", 'redirectURL'=>'/login']);
+        else
+        {
+            DB::delete('DELETE FROM user_genres WHERE username = ?', [$username]);
+            foreach($genreIDs as $ID) {
+                DB::insert('INSERT INTO user_genres VALUES (?, ?)', [$username, $ID]);
+            }
+            DB::update('UPDATE users SET books = ? WHERE username = ?', [$books, $username]);
+            DB::update('UPDATE users SET movie = ? WHERE username = ?', [$movies, $username]);
+            DB::update('UPDATE users SET anime = ? WHERE username = ?', [$anime, $username]);
+            return response()->json(['success'=>"AJAX Call done successfully", 'redirectURL'=>'/home']);
+        }
     }
 }

@@ -62,7 +62,7 @@
                 <li><a href="">
                     <span><i class="fa-solid fa-gear"></i></span> Settings
                 </a></li>
-                <li><a href="">
+                <li><a href="logout">
                     <span><i class="fa-solid fa-arrow-right-from-bracket"></i></span> Logout
                 </a></li>
                 <li><button onclick="displayBar()" style="background: transparent;">

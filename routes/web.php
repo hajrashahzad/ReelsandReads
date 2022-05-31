@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\RecommendationsController;
 use App\Http\Controllers\PreferencesController;
+use App\Http\Controllers\SettingsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +47,11 @@ Route::get('/info', [HomeController::class, 'infodisplay']);
 Route::post('search', [SearchController::class, 'searchmedia']);
 
 Route::post('/save-review', 'App\Http\Controllers\HomeController@saveReview');
+
+Route::get("/settings", function() {
+    return view("settings");
+});
+
+Route::post('/reset-password', "App\Http\Controllers\SettingsController@resetPassword");
+Route::post('/reset-email', "App\Http\Controllers\SettingsController@resetEmail");
+Route::post('/delete-account', "App\Http\Controllers\SettingsController@deleteAccount");
