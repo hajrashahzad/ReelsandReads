@@ -81,6 +81,14 @@
                 <div class = 'slider' id="movie-slider">
                     <button class="slider-button-left" onclick="sliderScrollLeft('#movie-slider')"><i class="fa-solid fa-angle-left"></i></button>
                     <button class="slider-button-right" onclick="sliderScrollRight('#movie-slider')"><i class="fa-solid fa-angle-right"></i></button>
+                    @if (count($movielist) == 0)
+                    <div id="empty-list">
+                        <p>
+                            You haven't added any movies to your list yet! <br>
+                            Go to <a href="recommendations">recommendations</a> page to browse!
+                        </p>
+                    </div>
+                    @endif
                     @foreach ($movielist as $movie)
                     <a href="info?id={{$movie->title}}"><img src="{{$movie->photoURL}}" alt=""></a>
                     @endforeach
@@ -91,6 +99,14 @@
                 <div class = 'slider' id="book-slider">
                     <button class="slider-button-left"  onclick="sliderScrollLeft('#book-slider')"><i class="fa-solid fa-angle-left"></i></button>
                     <button class="slider-button-right"  onclick="sliderScrollRight('#book-slider')"><i class="fa-solid fa-angle-right"></i></button>
+                    @if (count($booklist) == 0)
+                    <div id="empty-list">
+                        <p>
+                            You haven't added any books to your list yet! <br>
+                            Go to <a href="recommendations">recommendations</a> page to browse!
+                        </p>
+                    </div>
+                    @endif
                     @foreach ($booklist as $book)
                     <a href="info?id={{$book->title}}"><img src="{{$book->photoURL}}" alt=""></a>
                     @endforeach
@@ -101,6 +117,14 @@
                 <div class = 'slider' id="anime-slider">
                     <button class="slider-button-left" onclick="sliderScrollLeft('#anime-slider')" style="top:950px"><i class="fa-solid fa-angle-left"></i></button>
                     <button class="slider-button-right" onclick="sliderScrollRight('#anime-slider')" style="top:950px"><i class="fa-solid fa-angle-right"></i></button>
+                    @if (count($animelist) == 0)
+                    <div id="empty-list">
+                        <p>
+                            You haven't added any anime to your list yet! <br>
+                            Go to <a href="recommendations">recommendations</a> page to browse!
+                        </p>
+                    </div>
+                    @endif
                     @foreach ($animelist as $anime)
                     <a href="info?id={{$anime->title}}"><img src="{{$anime->photoURL}}" alt=""></a>
                     @endforeach

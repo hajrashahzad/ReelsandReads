@@ -128,7 +128,7 @@
         <br><br><br><br><br><br>
         <div class="main-widget" >
             <h2 id="media-title">{{$title}}</h2>
-            <div id="info-widget">
+            <div id="info-widget" class='infopg'>
                 <div>
                     <img src="{{$photoURL}}" alt="">
                 </div>

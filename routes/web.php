@@ -16,17 +16,33 @@ use App\Http\Controllers\PreferencesController;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    // if (Auth::check()){   //if user is logged in, redirect to home
+    //     return redirect('/home');
+    // }
+    return view('login');
+}); 
+
+//login/ register routes
+Route::post('/login', 'App\Http\Controllers\LoginController@login');
+Route::get('/logout', 'App\Http\Controllers\LoginController@logout');
+Route::get('/login', 
+    function(){
+        return view('login', ['message'=>""]);
+    });
+Route::get('/register', function(){
+    return view('register', ['message'=>""]);
 });
+Route::post('/register', 'App\Http\Controllers\RegisterController@register');
+Route::get('/user', 'App\Http\Controllers\UserController@index');
+
+Route::post('/livesearch', 'App\Http\Controllers\RegisterController@livesearch');
 Route::get('/home',  [HomeController::class, 'listdisplay']);
 Route::get('/recommendations', [RecommendationsController::class, 'displayrecs']);
 Route::get('/info', [HomeController::class, 'infodisplay']);
 Route::post('info',[HomeController::class, 'addtolist']);
 Route::post('search', [SearchController::class, 'searchmedia']);
-Route::get('/recommendations', function(){
-    return view('recommendations');
-});
 Route::get('/preferences', 'App\Http\Controllers\PreferencesController@getGenres');
 Route::post('/preferences', 'App\Http\Controllers\PreferencesController@savePreferences');
 Route::get('/info', [HomeController::class, 'infodisplay']);
