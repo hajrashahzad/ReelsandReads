@@ -17,7 +17,7 @@ class LoginController extends Controller
 			// Account exists and the form data is valid
             $genres = DB:: select('select genre from genres WHERE genre_id in (select genre_id from user_genres WHERE username = ?)',[$username]);              
                 // Create session data, we can access this data in other routes
-				session(['user'=>$username]);  
+				session(['username'=>$username]);  
                 session(['genres'=>$genres]);  
                 session(['animebool'=>$users[0]->anime]); 
                 session(['moviebool'=>$users[0]->movie]); 
@@ -27,7 +27,7 @@ class LoginController extends Controller
                 // echo $data; 
 
 			// Redirect to home page
-			 return redirect('https://www.youtube.com/watch?v=xvFZjo5PgG0');
+			 return redirect('/home');
         }
         else{
 			$msg = 'Incorrect username/password!';

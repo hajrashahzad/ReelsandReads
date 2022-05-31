@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function listdisplay(){
-       $username = 'test1';
+       $username = session('username');
        $movielist = DB::select('SELECT photoURL, title FROM items WHERE item_type = ? and item_id IN (SELECT movie_id FROM movielist WHERE username = ?)', ['movie',$username]);
        $booklist = DB::select('SELECT photoURL, title FROM items WHERE item_type = ? and item_id IN (SELECT book_id FROM booklist WHERE Username = ?)', ['book', $username]);
        $animelist = DB::select('SELECT photoURL, title FROM items WHERE item_type = ? and item_id IN (SELECT anime_id FROM animelist WHERE Username = ?)', ['anime', $username]);
-       return view('home', ['movielist' => $movielist, 'booklist' => $booklist, 'animelist' => $animelist]);
+       return view('home', ['movielist' => $movielist, 'booklist' => $booklist, 'animelist' => $animelist, 'username'=>$username]);
     }
     public function infodisplay(){
         $title =$_GET['id'];

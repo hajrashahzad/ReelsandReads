@@ -17,6 +17,7 @@ class RegisterController extends Controller
 			// Account doesnt exists and the form data is valid
             DB::insert('insert into users (username,passwd,email) values(?,?,?)' ,
             [$username, $password, $email]);
+            session(['username'=>$username]);
 			// Redirect to preference page
 			return redirect('/preferences');
         }
