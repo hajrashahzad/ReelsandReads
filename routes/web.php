@@ -31,3 +31,5 @@ Route::get('/preferences', 'App\Http\Controllers\PreferencesController@getGenres
 Route::post('/preferences', 'App\Http\Controllers\PreferencesController@savePreferences');
 Route::get('/info', [HomeController::class, 'infodisplay']);
 Route::post('search', [SearchController::class, 'searchmedia']);
+
+Route::post('/save-review', 'App\Http\Controllers\HomeController@saveReview');

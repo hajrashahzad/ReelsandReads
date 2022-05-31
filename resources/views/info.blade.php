@@ -53,6 +53,34 @@
                     }
                })
            });
+
+           $("#add-review").click(function(e) {
+               e.preventDefault();
+               let _token   = $('meta[name="csrf-token"]').attr('content');
+               const id = $("#add-button").attr("value");
+               const review = $("#rate-comments").val();
+               const stars = $(".form-check-input");
+               let star;
+               for (let i = 0; i < stars.length; i++)
+               {
+                   if (stars[i].checked)
+                        star = stars[i].value;
+               }
+               $.ajax({
+                    url: "/save-review",
+                    method: 'POST',
+                    data: {
+                        itemId: id,
+                        star,
+                        review,
+                        _token
+                    },
+                    success: function(response) {console.log(response)},
+                    error: function() {console.log(error)}
+               })
+               $("#rate-comments").val("")
+               stars[star - 1].checked = false;
+           })
         })
     </script>
     <style>
@@ -183,7 +211,7 @@
                <p id='success-message'></p>
             </div>
             <br><br>
-            <form id="ratings-form" action="">
+            <form id="ratings-form">
                 <h3 id="rate-heading">Rate the movie!</h2>
 
                     <!-- <div class="ratings-box">
@@ -274,12 +302,19 @@
                     <h3>Your thoughts?</h3>
                     <br>
                     <input type="text" id="rate-comments" placeholder="Leave a review....">
-                    <button class="submit-button" type="submit"> Submit</button>
+                    <button class="submit-button" id="add-review"> Submit</button>
             </form>
 
         </div>
         <div>
-            
+            <h5>Reviews</h5>
+            @foreach($reviews as $review)
+                <div>
+                    <div>{{$review->username}}</div>
+                    <div>{{$review->rating}}</div>
+                    <div>{{$review->review_text}}</div>
+                </div>
+            @endforeach
         </div>
     </main>
 </body>

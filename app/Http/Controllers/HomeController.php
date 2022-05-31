@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -20,12 +19,14 @@ class HomeController extends Controller
         $type = DB::table('items')->where('title', '=', $title)->value('item_type');
         $itemID = DB::table('items')->where('title', '=', $title)->value('item_id');
         $basicinfo = DB::table('items')->select( 'photoURL', 'online_ratings', 'yearOfRelease')->where('title', '=', $title)->get();
-        
+        $reviews = DB::select('SELECT * FROM reviews WHERE item_id = ?', [$itemID]);
+
         foreach ($basicinfo as $info){
-           $ratings = $info->online_ratings;
+            $ratings = $info->online_ratings;
             $RelYear = $info->yearOfRelease;
             $photoURL = $info->photoURL;
         }
+
         if($type == 'movie'){
           $genres = DB::select('SELECT genre from genres where genre_id in (select genre_id from item_genres where item_id = ?)', [$itemID]);
           $genrelist = '';
@@ -43,7 +44,7 @@ class HomeController extends Controller
               $runtime = $i->runtime;
               $director = $i->director;
           }
-          return view('info', ['title' => $title,'item_type' => $type, 'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'genres' => $genrelist, 'cast' => $cast, 'sypnosis' =>$sypnosis, 'director' =>$director, 'runtime'=>$runtime,'itemID' =>$itemID]);
+          return view('info', ['title' => $title,'item_type' => $type, 'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'genres' => $genrelist, 'cast' => $cast, 'sypnosis' =>$sypnosis, 'director' =>$director, 'runtime'=>$runtime,'itemID' =>$itemID, 'reviews'=>$reviews]);
         }
         else if($type == 'book'){
             $authorlist = DB::select('SELECT author_name from authors where author_id in (select author_id from book_authors where book_id = ?)', [$itemID]);
@@ -61,7 +62,7 @@ class HomeController extends Controller
                 $isbn = $k->isbn;
                 $pgs = $k->noOfPgs;
             }
-            return view('info', ['title' => $title, 'item_type' => $type,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'authors' => $authors, 'tags'=>$tags, 'isbn'=>$isbn, 'pgs'=>$pgs, 'itemID' =>$itemID]);
+            return view('info', ['title' => $title, 'item_type' => $type,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'authors' => $authors, 'tags'=>$tags, 'isbn'=>$isbn, 'pgs'=>$pgs, 'itemID' =>$itemID, 'reviews'=>$reviews]);
         }
         else if($type == 'anime'){
             $genres = DB::select('SELECT genre from genres where item_type = ? and genre_id in (select genre_id from item_genres where item_id = ?)', [$type, $itemID]);
@@ -76,7 +77,7 @@ class HomeController extends Controller
                 $overview = $a->overview;
                 $eps = $a->noOfEpisodes;
             }
-            return view('info', ['title' => $title, 'item_type' => $type,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'genres' => $genrelist, 'rank'=>$rank, 'og_title'=>$og_title, 'overview'=>$overview, 'eps' =>$eps, 'itemID' =>$itemID]);
+            return view('info', ['title' => $title, 'item_type' => $type,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear, 'genres' => $genrelist, 'rank'=>$rank, 'og_title'=>$og_title, 'overview'=>$overview, 'eps' =>$eps, 'itemID' =>$itemID, 'reviews'=>$reviews]);
         }
         else{
             return view('info', ['title' => $title,'photoURL'=>$photoURL, 'ratings' =>$ratings, 'yearOfRelease' => $RelYear]);
@@ -117,5 +118,13 @@ class HomeController extends Controller
            // }
            return response()->json(['success'=>'Ajax request submitted successfully']);
         }
+    }
+
+    public function saveReview(Request $req) {
+        $review = $req->input('review');
+        $star = $req->input('star');
+        $itemId = $req->input('itemId');
+        DB::insert('INSERT INTO reviews VALUES (?, ?, ?, ?)', ['test1', $itemId, $review, $star]);
+        return response()->json(['success'=>'Ajax request submitted successfully']);
     }
 }
