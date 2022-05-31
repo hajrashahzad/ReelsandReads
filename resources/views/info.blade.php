@@ -302,7 +302,10 @@
                     <h3>Your thoughts?</h3>
                     <br>
                     <input type="text" id="rate-comments" placeholder="Leave a review....">
-                    <button class="submit-button" id="add-review"> Submit</button>
+                    <div id='list-button'>
+                     <button class="submit-button" id="add-review"> Submit</button>
+                    </div>
+                    
             </form>
 
         </div>
