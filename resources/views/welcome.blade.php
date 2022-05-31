@@ -11,6 +11,12 @@
         body{
             background-image:none;
         }
+        .fa-brands{
+            color:white;
+        }
+        .fa-brands:hover{
+            color:#ce616b;
+        }
     </style>
 </head>
 <body>
@@ -33,14 +39,13 @@
         </p>
     </div>
     <br><br><br>
-   <div id='footer'>
+   <div id='footer' class='flex'>
        <div class= 'flex' id = 'socials'>
         <div><a href=""><i class="fa-brands fa-instagram fa-2x"></i></a></div>
         <div><a href=""><i class="fa-brands fa-twitter fa-2x"></i></a></div>
         <div><a href=""><i class="fa-brands fa-facebook fa-2x"></i></a></div>
-        <br><br>
        </div>
+       <div id = 'sitename'>Reels & Reads</div>
    </div>     
-
 </body>
 </html>
