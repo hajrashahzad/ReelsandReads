@@ -100,7 +100,7 @@
         <br><br><br><br><br><br>
         <div class="main-widget" >
             <h2 id="media-title">{{$title}}</h2>
-            <div id="info-widget">
+            <div id="info-widget" class='infopg'>
                 <div>
                     <img src="{{$photoURL}}" alt="">
                 </div>
@@ -274,7 +274,7 @@
                     <h3>Your thoughts?</h3>
                     <br>
                     <input type="text" id="rate-comments" placeholder="Leave a review....">
-                    <button class="submit-button" type="submit"> Submit</button>
+                    <div id="list-button"><button class="submit-button" type="submit"> Submit</button></div>
             </form>
 
         </div>

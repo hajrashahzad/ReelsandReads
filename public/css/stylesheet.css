@@ -443,7 +443,7 @@ body{
 }
 .mobile-nav-toggle{
     display: none;
-    margin-left: 40%;
+    margin-left: 50%;
     margin-top: 2%;
 }
 .primary-navigation{
@@ -580,10 +580,11 @@ button:hover{
 #info-widget{
    display: flex;
 }
+
 #info-widget img{
     border-radius: 1.5rem;
     margin: 8%;
-    margin-top: 4%;
+    margin-top: 15%; 
     filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.25));
     height: 400px;
     width: 260px;
@@ -596,12 +597,11 @@ button:hover{
     font-size: 1em;
     margin: 8%;
 }
+/* .infopg img{
+    margin-top: 25%;
+} */
 #info-widget td {
     padding: 5px;
-}
-.add-to-list-button, .submit-button{
-    width: 115px;
-    margin-left: 3%;
 }
 .search-main img{
     height: 230px;
@@ -654,9 +654,47 @@ button:hover{
 #media-title{
     margin-left: 2%;
 }
+#empty-list{
+    text-align: center;
+    width: 100%;
+}
+#empty-list a{
+    font-weight: 700;
+    text-decoration: none;
+    color: #212e53;
+}
+#empty-list a:hover{
+   color: #ce6a6b;
+}
+
+#list-button{
+    display: flex;
+    flex-direction: column;
+    margin-left: 3%;
+}
+#list-button button{
+    width: 260px;
+    margin: 0;
+    margin-top: 10px;
+}
+@media (max-width:323px){
+    .mobile-nav-toggle{
+        margin-left: 40%;
+    }
+    .logo{
+        margin-left: 14%;
+    }
+}
+@media (max-width:375px){
+    
+    .logo{
+        margin-left: 19%;
+    }
+}
 @media (max-width:35em) {
     .primary-header{
         width: auto;
+        justify-content:initial;
     }
     .primary-navigation{
         margin-left: 0;
@@ -697,19 +735,42 @@ button:hover{
         display: block;
         width: 55vw;
         height: 36px;
-        top: 35px;
-        left: 98px;
+        top: 35px; 
+        left: 20vw; 
         transform: translateY(0%);
     }
     .ratings-box, .add-to-list-button{
         justify-content: center;
     }
-    #add-to-list-button{
-       align-items: center;
-       justify-content: center;
-    }
     #ratings-form h3, #media-title{
         text-align: center;
+    }
+    #info-widget img{
+        height: 40vh;
+        width: 32vw;
+        margin-top: 10vw;
+        border-radius: 30px;
+    }
+    #info-widget td{
+        font-size: 3vw;
+    }
+    .logo{
+        min-height: 36px;
+    }
+    #list-button {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    #list-button button{
+        width: 150px;
+        margin: 0;
+        margin-top: 10px;
+    }
+    #empty-list{
+        font-size: 12px;
     }
 }
 @media (min-width:35em){

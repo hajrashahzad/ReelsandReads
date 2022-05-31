@@ -63,9 +63,9 @@
                 </div>
                 <div>
                     <table>
-                        <tr><td>Title: {{$i->title}}</td></tr>
-                        <tr><td>Ratings: {{$i->online_ratings}}</td></tr>
-                        <tr><td>Year of Release: {{$i->yearOfRelease}}</td></tr>
+                        <tr><td><b> Title: </b>{{$i->title}} </td></tr>
+                        <tr><td><b>Ratings: </b>{{$i->online_ratings}}</td></tr>
+                        <tr><td><b>Year of Release: </b>{{$i->yearOfRelease}}</td></tr>
                     </table>
                 </div>
             </div>
