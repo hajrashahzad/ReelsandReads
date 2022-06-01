@@ -65,7 +65,7 @@
                 <li><a href="recommendations">
                     <span><i class="fa-solid fa-tablet"></i></span> Recommendations
                 </a></li>
-                <li><a href="">
+                <li><a href="settings">
                     <span><i class="fa-solid fa-gear"></i></span> Settings
                 </a></li>
                 <li><a href="logout">
