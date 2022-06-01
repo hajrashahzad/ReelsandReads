@@ -32,6 +32,12 @@
         .fa-bars, .fa-xmark{
             color: white;
         }
+        .fa-brands{
+            color:white;
+        }
+        .fa-brands:hover{
+            color:#ce616b;
+        }
     </style>
 </head>
 <body onresize="resizeAction()">
@@ -132,4 +138,12 @@
             </div>
         </div>
     </main>
+    <div id='footer' class='flex'>
+       <div class= 'flex' id = 'socials'>
+        <div><a href=""><i class="fa-brands fa-instagram fa-2x"></i></a></div>
+        <div><a href=""><i class="fa-brands fa-twitter fa-2x"></i></a></div>
+        <div><a href=""><i class="fa-brands fa-facebook fa-2x"></i></a></div>
+       </div>
+       <div id = 'sitename'>Reels & Reads</div>
+   </div>    
 </body>

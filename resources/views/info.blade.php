@@ -87,6 +87,12 @@
         .fa-bars, .fa-xmark{
             color: white;
         }
+        .fa-brands{
+            color:white;
+        }
+        .fa-brands:hover{
+            color:#ce616b;
+        }
     </style>
 </head>
 <body onresize="resizeAction()">
@@ -213,49 +219,6 @@
             <br><br>
             <form id="ratings-form">
                 <h3 id="rate-heading">Rate the movie!</h2>
-
-                    <!-- <div class="ratings-box">
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio1">
-                            <label for="radio1">1</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio2">
-                            <label for="radio2">2</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio3">
-                            <label for="radio3">3</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio4">
-                            <label for="radio4">4</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio5">
-                            <label for="radio5">5</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio6">
-                            <label for="radio6">6</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio7">
-                            <label for="radio7">7</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio8">
-                            <label for="radio8">8</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio9">
-                            <label for="radio9">9</label>
-                        </div>
-                        <div class='ratings-radio'>
-                            <input type="radio" id="radio10">
-                            <label for="radio10">10</label>
-                        </div>
-                    </div> -->
                 <div class="ratings-box">
                     <div class="form-check form-check-inline" id = 'ratings-radio'>
                         <input class="form-check-input" type="radio" name="Options" id="inlineRadio1" value="1">
@@ -302,19 +265,34 @@
                     <h3>Your thoughts?</h3>
                     <br>
                     <input type="text" id="rate-comments" placeholder="Leave a review....">
-                    <button class="submit-button" id="add-review"> Submit</button>
+                    <div id='list-button'>
+                     <button class="submit-button" id="add-review"> Submit</button>
+                    </div>
+                    
             </form>
 
         </div>
-        <div>
-            <h5>Reviews</h5>
+        <br><br>
+        <div id='review-widget'>
+            <h2>Reviews</h2>
+            @if (count($reviews) == 0)
+            <p>No reviews for this item yet. Write one!</p>
+            @endif
             @foreach($reviews as $review)
-                <div>
-                    <div>{{$review->username}}</div>
-                    <div>{{$review->rating}}</div>
-                    <div>{{$review->review_text}}</div>
+                <div id = 'review'>
+                    <div id = 'username'><i class="fa-solid fa-user"></i><br>{{$review->username}}</div>
+                    <div id = 'score'><b> Score: </b>{{$review->rating}}/10</div>
+                    <div id = 'comment'>{{$review->review_text}}</div>
                 </div>
             @endforeach
         </div>
     </main>
+    <div id='footer' class='flex'>
+       <div class= 'flex' id = 'socials'>
+        <div><a href=""><i class="fa-brands fa-instagram fa-2x"></i></a></div>
+        <div><a href=""><i class="fa-brands fa-twitter fa-2x"></i></a></div>
+        <div><a href=""><i class="fa-brands fa-facebook fa-2x"></i></a></div>
+       </div>
+       <div id = 'sitename'>Reels & Reads</div>
+   </div>     
 </body>

@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/7f473dda5c.js" crossorigin="anonymous"></script>
     <script src="{{url('js/jquery-1.11.0.js')}}"></script>
     <script src="{{url('js/main.js')}}"></script>
-    <title>Document</title>
+    <title>Recommendations</title>
     <script>
         var scrollAmount = 0;
         function sliderScrollLeft(idname){
@@ -33,6 +33,12 @@
     <style>
         .fa-bars, .fa-xmark{
             color: white;
+        }
+        .fa-brands{
+            color:white;
+        }
+        .fa-brands:hover{
+            color:#ce616b;
         }
     </style>
 </head>
@@ -123,5 +129,13 @@
             </div>
         </div>
     </main>
+    <div id='footer' class='flex'>
+       <div class= 'flex' id = 'socials'>
+        <div><a href=""><i class="fa-brands fa-instagram fa-2x"></i></a></div>
+        <div><a href=""><i class="fa-brands fa-twitter fa-2x"></i></a></div>
+        <div><a href=""><i class="fa-brands fa-facebook fa-2x"></i></a></div>
+       </div>
+       <div id = 'sitename'>Reels & Reads</div>
+   </div>    
 </body>
 </html>
