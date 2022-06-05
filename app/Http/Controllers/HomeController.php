@@ -126,6 +126,7 @@ class HomeController extends Controller
         $itemId = $req->input('itemId');
         $username = session('username');
         DB::insert('INSERT INTO reviews VALUES (?, ?, ?, ?)', [$username, $itemId, $review, $star]);
+        // infodisplay();
         return response()->json(['success'=>'Ajax request submitted successfully']);
     }
 }

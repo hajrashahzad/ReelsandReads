@@ -75,8 +75,11 @@
                         review,
                         _token
                     },
-                    success: function(response) {console.log(response)},
-                    error: function() {console.log(error)}
+                    success: function(response) {
+                        console.log(response);
+                        // window.location.pathname = response.redirectURL; 
+                    },
+                    error: function(error) {console.log(error)}
                })
                $("#rate-comments").val("")
                stars[star - 1].checked = false;
@@ -212,7 +215,7 @@
                </div>
             </div>
             <div id="list-button" >
-               <button class="add-to-list-button" id='add-button' value = "{{$itemID}}"> Add to List</button>
+               <a href="home"><button class="add-to-list-button" id='add-button' value = "{{$itemID}}"> Add to List</button></a>
                <button class='remove-from-list-button' id = 'remove-button' value = "{{$itemID}}"> Remove from List</button>
                <p id='success-message'></p>
             </div>
@@ -266,7 +269,7 @@
                     <br>
                     <input type="text" id="rate-comments" placeholder="Leave a review....">
                     <div id='list-button'>
-                     <button class="submit-button" id="add-review"> Submit</button>
+                    <button class="submit-button" id="add-review"> Submit</button>
                     </div>
                     
             </form>
