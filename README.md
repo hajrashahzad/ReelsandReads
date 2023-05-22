@@ -1,2 +1,2 @@
 # ReelsandReads
-A repository for Web Development end semester project
+A repository for Distributed Computingend semester project
